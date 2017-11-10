@@ -21,9 +21,9 @@ public final class EntryptionHelper {
     public static final String CIPHER_ALGORITHM = "DES/ECB/PKCS5Padding";
 
     /**
-     *
-     * @param key
-     * @param message
+     *对称性加密
+     * @param key  用于加密的密钥
+     * @param message  需要加密的消息体
      * @return
      */
     public static String encrypt(String key,String message) throws Exception {
@@ -34,9 +34,9 @@ public final class EntryptionHelper {
     }
 
     /**
-     *
-     * @param key
-     * @param message
+     *对称性解密
+     * @param key 用于解密的密钥
+     * @param message  需要解密的加密消息体
      * @return
      */
     public static String decrypt(String key,String message) throws Exception {
@@ -46,6 +46,12 @@ public final class EntryptionHelper {
         return new String(cipher.doFinal(base64DecodeByte(message)));
     }
 
+    /**
+     * 将字符串key转化为Key对象
+     * @param key
+     * @return
+     * @throws Exception
+     */
     private static Key toKey(String key) throws Exception {
         DESKeySpec dks = new DESKeySpec(Base64.decodeBase64(key));
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(KEY_ALGORITHM);
@@ -53,8 +59,8 @@ public final class EntryptionHelper {
     }
 
     /**
-     *
-     * @param message
+     *base64加密算法
+     * @param message 需要加密的消息体
      * @return
      */
     public static String base64Encode(String message){
@@ -64,8 +70,8 @@ public final class EntryptionHelper {
     }
 
     /**
-     *
-     * @param message
+     *base64加密算法
+     * @param message 需要加密的消息体
      * @return
      */
     public static String base64Encode(byte [] message){
@@ -73,8 +79,8 @@ public final class EntryptionHelper {
     }
 
     /**
-     *
-     * @param message
+     *base64解密算法
+     * @param message 需要解密的加密消息体
      * @return
      */
     public static String base64Decode(String message){
@@ -83,13 +89,18 @@ public final class EntryptionHelper {
         );
     }
 
+    /**
+     * base64解密算法
+     * @param message 需要解密的加密消息体
+     * @return
+     */
     public static byte[] base64DecodeByte(String message){
         return Base64.decodeBase64(message);
     }
 
     /**
-     *
-     * @param message
+     *md5加密算法
+     * @param message 需要加密的消息体
      * @return
      */
     public static String md5Hex(String message){
@@ -97,8 +108,8 @@ public final class EntryptionHelper {
     }
 
     /**
-     *
-     * @param message
+     *sha1加密算法
+     * @param message 需要加密的消息体
      * @return
      */
     public static String sha1Hex(String message){
@@ -106,8 +117,8 @@ public final class EntryptionHelper {
     }
 
     /**
-     *
-     * @param message
+     *sha256加密算法
+     * @param message 需要加密的消息体
      * @return
      */
     public static String sha256Hex(String message){
