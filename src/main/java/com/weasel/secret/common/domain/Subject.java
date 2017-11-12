@@ -22,12 +22,13 @@ public class Subject {
      */
     @Column(name = "url",nullable = true)
     private String url;
+
     /**
      * 密码，如:
      * 支付密码:42234324
      * 登录密码:dsf24234234
      */
-    @OneToMany(cascade = CascadeType.DETACH)
+    @OneToMany(cascade = {CascadeType.REMOVE,CascadeType.PERSIST},fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private List<Secret> secrets;
 

@@ -39,4 +39,5 @@ public class Secret{
     public void setValue(String value) {
         this.value = value;
     }
+
 }

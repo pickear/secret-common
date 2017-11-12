@@ -30,7 +30,7 @@ public class User{
     /**
      * 密码主体，比如招行，淘宝
      */
-    @OneToMany(cascade = CascadeType.DETACH)
+    @OneToMany(cascade = {CascadeType.REMOVE,CascadeType.PERSIST},fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<Subject> subjects;
 
