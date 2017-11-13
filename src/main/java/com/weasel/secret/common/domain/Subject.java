@@ -12,6 +12,9 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Column(name = "user_id")
+    private long userId;
     /**
      * 标题
      */
@@ -38,6 +41,14 @@ public class Subject {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {

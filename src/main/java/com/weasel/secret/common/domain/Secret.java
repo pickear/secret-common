@@ -8,11 +8,27 @@ import javax.persistence.*;
 @Entity
 @Table(name = "secret")
 public class Secret{
+
+    /**
+     *
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    /**
+     *
+     */
+    @Column(name = "subject_id")
+    private long subjectId;
+    /**
+     *
+     */
     @Column(name = "name")
     private String name;
+    /**
+     *
+     */
     @Column(name = "value")
     private String value;
 
@@ -22,6 +38,14 @@ public class Secret{
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(long subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getName() {
