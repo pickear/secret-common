@@ -31,7 +31,7 @@ public class Subject {
      * 支付密码:42234324
      * 登录密码:dsf24234234
      */
-    @OneToMany(cascade = {CascadeType.REMOVE,CascadeType.PERSIST},fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private List<Secret> secrets;
 
