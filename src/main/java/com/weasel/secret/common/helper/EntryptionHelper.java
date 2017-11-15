@@ -4,10 +4,13 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import java.nio.charset.Charset;
 import java.security.Key;
+import java.security.KeyException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by dell on 2017/11/10.
@@ -18,7 +21,8 @@ public final class EntryptionHelper {
     public static final String KEY_ALGORITHM = "DES";
     //算法名称/加密模式/填充方式
     //DES共有四种工作模式-->>ECB：电子密码本模式、CBC：加密分组链接模式、CFB：加密反馈模式、OFB：输出反馈模式
-    public static final String CIPHER_ALGORITHM = "DES/ECB/PKCS5Padding";
+    public static final String CIPHER_ALGORITHM = KEY_ALGORITHM;
+    public static final int KEY_LENGTH = 2<<2;
 
     /**
      *对称性加密
@@ -27,6 +31,9 @@ public final class EntryptionHelper {
      * @return
      */
     public static String encrypt(String key,String message) throws Exception {
+        if(null == key || key.length() != KEY_LENGTH){
+            throw new KeyException("请输入长度为"+KEY_LENGTH+"的key");
+        }
         Key _key = toKey(key);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE,_key);
@@ -40,10 +47,24 @@ public final class EntryptionHelper {
      * @return
      */
     public static String decrypt(String key,String message) throws Exception {
+        if(null == key || key.length() != KEY_LENGTH){
+            throw new KeyException("请输入长度为"+KEY_LENGTH+"的key");
+        }
         Key _key = toKey(key);
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE,_key);
         return new String(cipher.doFinal(base64DecodeByte(message)));
+    }
+
+    /**
+     * 创建一个密钥
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
+    public static String createKey() throws NoSuchAlgorithmException {
+        return Base64.encodeBase64String(
+                KeyGenerator.getInstance("DES").generateKey().getEncoded()
+        );
     }
 
     /**
@@ -53,7 +74,7 @@ public final class EntryptionHelper {
      * @throws Exception
      */
     private static Key toKey(String key) throws Exception {
-        DESKeySpec dks = new DESKeySpec(Base64.decodeBase64(key));
+        DESKeySpec dks = new DESKeySpec(key.getBytes(Charset.forName("utf-8")));
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(KEY_ALGORITHM);
         return keyFactory.generateSecret(dks);
     }
