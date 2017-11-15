@@ -13,7 +13,7 @@ import java.util.List;
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     /**
      * 用户名
      */
@@ -36,11 +36,11 @@ public class User{
     @JoinColumn(name = "user_id")
     private List<Subject> subjects;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "user_id")
     private long userId;
@@ -35,11 +35,11 @@ public class Subject {
     @JoinColumn(name = "subject_id")
     private List<Secret> secrets;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
