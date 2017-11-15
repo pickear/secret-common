@@ -1,5 +1,7 @@
 package com.weasel.secret.common.domain;
 
+import com.weasel.secret.common.helper.EntryptionHelper;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -72,5 +74,9 @@ public class User{
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    public void encodePassword(){
+        setPassword(EntryptionHelper.md5Hex(getPassword()));
     }
 }
