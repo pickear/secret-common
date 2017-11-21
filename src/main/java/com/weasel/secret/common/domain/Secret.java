@@ -1,5 +1,7 @@
 package com.weasel.secret.common.domain;
 
+import com.weasel.secret.common.helper.EntryptionHelper;
+
 import javax.persistence.*;
 
 /**
@@ -62,6 +64,24 @@ public class Secret{
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    /**
+     *
+     * @param key
+     * @throws Exception
+     */
+    public void entrypt(String key) throws Exception {
+        setValue(EntryptionHelper.encrypt(key,getValue()));
+    }
+
+    /**
+     *
+     * @param key
+     * @throws Exception
+     */
+    public void decrypt(String key) throws Exception {
+        setValue(EntryptionHelper.decrypt(key,getValue()));
     }
 
 }

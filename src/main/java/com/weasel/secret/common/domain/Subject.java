@@ -1,5 +1,7 @@
 package com.weasel.secret.common.domain;
 
+import com.weasel.secret.common.helper.EntryptionHelper;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -73,6 +75,28 @@ public class Subject {
 
     public void setSecrets(List<Secret> secrets) {
         this.secrets = secrets;
+    }
+
+    /**
+     *
+     * @param key
+     * @throws Exception
+     */
+    public void entryptAllSecret(String key) throws Exception {
+        for(Secret secret : getSecrets()){
+            secret.entrypt(key);
+        }
+    }
+
+    /**
+     *
+     * @param key
+     * @throws Exception
+     */
+    public void decryptAllSecret(String key) throws Exception {
+        for(Secret secret : getSecrets()){
+            secret.decrypt(key);
+        }
     }
 
 
