@@ -99,5 +99,21 @@ public class Subject {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("{");
+        buffer.append("id:").append(getId()).append(",")
+              .append("title:").append(getTitle()).append(",")
+              .append("url:").append(getUrl()).append(",")
+              .append("secrets[");
 
+        for(Secret secret : getSecrets()){
+            buffer.append("{id:").append(secret.getId()).append(",")
+                  .append("name:").append(secret.getName()).append(",")
+                  .append("value:").append(secret.getValue()).append("}");
+        }
+        buffer.append("]}");
+        return buffer.toString();
+    }
 }
