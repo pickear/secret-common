@@ -24,13 +24,14 @@ public class SubjectTests {
         secret1.setValue("abc4568975364");
         secrets.add(secret1);
 
-
         Secret secret2 = new Secret();
         secret2.setName("支付密码");
         secret2.setValue("cdf5656435465");
         secrets.add(secret2);
 
         subject.setSecrets(secrets);
+
+
         System.out.println("加密前:"+subject.toString());
         subject.entryptAllSecret(key);
         System.out.println("加密后:"+subject.toString());
