@@ -12,7 +12,7 @@ public class EntryptionHelperTests {
     public void encryptAndDecreypt() throws Exception {
 
         String key = "abcdefg9";
-        String password = "alhy!@#5805703";
+        String password = "6546465164sdfsdfsd";
         String entryptPassword = EntryptionHelper.encrypt(key,password);
         System.out.println("password : "+password+" entrypt is :"+entryptPassword);
 

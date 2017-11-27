@@ -1,8 +1,5 @@
 package com.weasel.secret.common.helper;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKeyFactory;
@@ -12,6 +9,7 @@ import java.nio.charset.Charset;
 import java.security.Key;
 import java.security.KeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 /**
  * Created by dell on 2017/11/10.
@@ -63,7 +61,7 @@ public final class EntryptionHelper {
      * @throws NoSuchAlgorithmException
      */
     public static String createKey() throws NoSuchAlgorithmException {
-        return new BASE64Encoder().encode(
+        return Base64.getEncoder().encodeToString(
                 KeyGenerator.getInstance("DES").generateKey().getEncoded()
         );
     }
@@ -86,9 +84,7 @@ public final class EntryptionHelper {
      * @return
      */
     public static String base64Encode(String message){
-        return new BASE64Encoder().encode(
-                message.getBytes(Charset.forName("utf-8"))
-        );
+        return base64Encode(message.getBytes(Charset.forName("utf-8")));
     }
 
     /**
@@ -97,7 +93,7 @@ public final class EntryptionHelper {
      * @return
      */
     public static String base64Encode(byte [] message){
-        return new BASE64Encoder().encode(message);
+        return Base64.getEncoder().encodeToString(message);
     }
 
     /**
@@ -108,7 +104,7 @@ public final class EntryptionHelper {
     public static String base64Decode(String message) throws IOException {
 
         return new String(
-                new BASE64Decoder().decodeBuffer(message)
+                base64DecodeByte(message)
         );
     }
 
@@ -118,7 +114,7 @@ public final class EntryptionHelper {
      * @return
      */
     public static byte[] base64DecodeByte(String message) throws IOException {
-        return new BASE64Decoder().decodeBuffer(message);
+        return Base64.getDecoder().decode(message);
     }
 
     /**
