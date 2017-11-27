@@ -9,7 +9,6 @@ import java.nio.charset.Charset;
 import java.security.Key;
 import java.security.KeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
 /**
  * Created by dell on 2017/11/10.
@@ -61,8 +60,8 @@ public final class EntryptionHelper {
      * @throws NoSuchAlgorithmException
      */
     public static String createKey() throws NoSuchAlgorithmException {
-        return Base64.getEncoder().encodeToString(
-                KeyGenerator.getInstance("DES").generateKey().getEncoded()
+        return Base64.encodeToString(
+                KeyGenerator.getInstance("DES").generateKey().getEncoded(),Base64.DEFAULT
         );
     }
 
@@ -93,7 +92,7 @@ public final class EntryptionHelper {
      * @return
      */
     public static String base64Encode(byte [] message){
-        return Base64.getEncoder().encodeToString(message);
+        return Base64.encodeToString(message,Base64.DEFAULT);
     }
 
     /**
@@ -114,7 +113,7 @@ public final class EntryptionHelper {
      * @return
      */
     public static byte[] base64DecodeByte(String message) throws IOException {
-        return Base64.getDecoder().decode(message);
+        return Base64.decode(message,Base64.DEFAULT);
     }
 
     /**
