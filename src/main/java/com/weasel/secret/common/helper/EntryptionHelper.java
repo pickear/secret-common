@@ -1,12 +1,13 @@
 package com.weasel.secret.common.helper;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.digest.DigestUtils;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.security.Key;
 import java.security.KeyException;
@@ -62,9 +63,12 @@ public final class EntryptionHelper {
      * @throws NoSuchAlgorithmException
      */
     public static String createKey() throws NoSuchAlgorithmException {
-        return Base64.encodeBase64String(
+        return new BASE64Encoder().encode(
                 KeyGenerator.getInstance("DES").generateKey().getEncoded()
         );
+        /*return Base64.encodeBase64String(
+                KeyGenerator.getInstance("DES").generateKey().getEncoded()
+        );*/
     }
 
     /**
@@ -85,9 +89,12 @@ public final class EntryptionHelper {
      * @return
      */
     public static String base64Encode(String message){
-        return Base64.encodeBase64String(
+        return new BASE64Encoder().encode(
                 message.getBytes(Charset.forName("utf-8"))
         );
+        /*return Base64.encodeBase64String(
+                message.getBytes(Charset.forName("utf-8"))
+        );*/
     }
 
     /**
@@ -96,7 +103,8 @@ public final class EntryptionHelper {
      * @return
      */
     public static String base64Encode(byte [] message){
-        return Base64.encodeBase64String(message);
+        return new BASE64Encoder().encode(message);
+       /* return Base64.encodeBase64String(message);*/
     }
 
     /**
@@ -104,10 +112,14 @@ public final class EntryptionHelper {
      * @param message 需要解密的加密消息体
      * @return
      */
-    public static String base64Decode(String message){
+    public static String base64Decode(String message) throws IOException {
+
         return new String(
-                Base64.decodeBase64(message),Charset.forName("utf-8")
+                new BASE64Decoder().decodeBuffer(message)
         );
+        /*return new String(
+                Base64.decodeBase64(message),Charset.forName("utf-8")
+        );*/
     }
 
     /**
@@ -115,8 +127,9 @@ public final class EntryptionHelper {
      * @param message 需要解密的加密消息体
      * @return
      */
-    public static byte[] base64DecodeByte(String message){
-        return Base64.decodeBase64(message);
+    public static byte[] base64DecodeByte(String message) throws IOException {
+        return new BASE64Decoder().decodeBuffer(message);
+        /*return Base64.decodeBase64(message);*/
     }
 
     /**
@@ -125,7 +138,7 @@ public final class EntryptionHelper {
      * @return
      */
     public static String md5Hex(String message){
-        return DigestUtils.md5Hex(message);
+        return Md5Helper.md5Hex(message);
     }
 
     /**
@@ -133,18 +146,18 @@ public final class EntryptionHelper {
      * @param message 需要加密的消息体
      * @return
      */
-    public static String sha1Hex(String message){
+    /*public static String sha1Hex(String message){
         return DigestUtils.sha1Hex(message);
-    }
+    }*/
 
     /**
      *sha256加密算法
      * @param message 需要加密的消息体
      * @return
      */
-    public static String sha256Hex(String message){
+   /* public static String sha256Hex(String message){
         return DigestUtils.sha256Hex(message);
-    }
+    }*/
 
     /**
      *
