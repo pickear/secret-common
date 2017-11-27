@@ -66,9 +66,6 @@ public final class EntryptionHelper {
         return new BASE64Encoder().encode(
                 KeyGenerator.getInstance("DES").generateKey().getEncoded()
         );
-        /*return Base64.encodeBase64String(
-                KeyGenerator.getInstance("DES").generateKey().getEncoded()
-        );*/
     }
 
     /**
@@ -92,9 +89,6 @@ public final class EntryptionHelper {
         return new BASE64Encoder().encode(
                 message.getBytes(Charset.forName("utf-8"))
         );
-        /*return Base64.encodeBase64String(
-                message.getBytes(Charset.forName("utf-8"))
-        );*/
     }
 
     /**
@@ -104,7 +98,6 @@ public final class EntryptionHelper {
      */
     public static String base64Encode(byte [] message){
         return new BASE64Encoder().encode(message);
-       /* return Base64.encodeBase64String(message);*/
     }
 
     /**
@@ -117,9 +110,6 @@ public final class EntryptionHelper {
         return new String(
                 new BASE64Decoder().decodeBuffer(message)
         );
-        /*return new String(
-                Base64.decodeBase64(message),Charset.forName("utf-8")
-        );*/
     }
 
     /**
@@ -129,7 +119,6 @@ public final class EntryptionHelper {
      */
     public static byte[] base64DecodeByte(String message) throws IOException {
         return new BASE64Decoder().decodeBuffer(message);
-        /*return Base64.decodeBase64(message);*/
     }
 
     /**
