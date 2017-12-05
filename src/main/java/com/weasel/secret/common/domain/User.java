@@ -3,6 +3,7 @@ package com.weasel.secret.common.domain;
 import com.weasel.secret.common.helper.EntryptionHelper;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**用户
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "user")
-public class User{
+public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

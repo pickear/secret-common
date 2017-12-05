@@ -3,13 +3,14 @@ package com.weasel.secret.common.domain;
 import com.weasel.secret.common.helper.EntryptionHelper;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Dylan on 2017/11/11.
  */
 @Entity
 @Table(name = "secret")
-public class Secret{
+public class Secret implements Serializable{
 
     /**
      *

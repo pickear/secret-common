@@ -1,8 +1,7 @@
 package com.weasel.secret.common.domain;
 
-import com.weasel.secret.common.helper.EntryptionHelper;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**密码主体，如招行，淘宝
@@ -10,7 +9,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "subject")
-public class Subject {
+public class Subject implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
