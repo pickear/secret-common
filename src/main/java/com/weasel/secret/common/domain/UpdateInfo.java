@@ -10,20 +10,43 @@ public class UpdateInfo implements Serializable {
     public UpdateInfo() {
     }
 
-    public UpdateInfo(boolean hasUpdate, boolean force, float currentVesion,String url, String md5, long size) {
+    public UpdateInfo(boolean hasUpdate, boolean force, float currentVesion,String description,String url, String md5, long size) {
         this.hasUpdate = hasUpdate;
         this.force = force;
         this.currentVesion = currentVesion;
+        this.description = description;
         this.url = url;
         this.md5 = md5;
         this.size = size;
     }
 
+    /**
+     * 是否有更新
+     */
     private boolean hasUpdate;
+    /**
+     * 是否强制更新
+     */
     private boolean force;
+    /**
+     * 当前最新版本号
+     */
     private float currentVesion;
+    /**
+     * 更新描述
+     */
+    private String description;
+    /**
+     * apk下载url
+     */
     private String url;
+    /**
+     * apk md5值
+     */
     private String md5;
+    /**
+     * apk 大小
+     */
     private long size;
 
     public boolean isHasUpdate() {
@@ -48,6 +71,14 @@ public class UpdateInfo implements Serializable {
 
     public void setCurrentVesion(float currentVesion) {
         this.currentVesion = currentVesion;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUrl() {
