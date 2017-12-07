@@ -4,6 +4,7 @@ import com.weasel.secret.common.helper.EntryptionHelper;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**用户
@@ -30,6 +31,18 @@ public class User implements Serializable{
      */
     @Column(name = "email",nullable = true)
     private String email;
+
+    /**
+     *创建时间
+     */
+    @Column(name = "createTime",nullable = false)
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    @Column(name = "updateTime",nullable = true)
+    private Date updateTime;
     /**
      * 密码主体，比如招行，淘宝
      */
@@ -67,6 +80,22 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public List<Subject> getSubjects() {

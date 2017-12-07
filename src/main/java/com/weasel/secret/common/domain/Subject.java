@@ -2,6 +2,7 @@ package com.weasel.secret.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**密码主体，如招行，淘宝
@@ -28,6 +29,24 @@ public class Subject implements Serializable{
     private String url;
 
     /**
+     *创建时间
+     */
+    @Column(name = "create_time",nullable = false)
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    @Column(name = "update_time",nullable = true)
+    private Date updateTime;
+
+    /**
+     * 是否已删除
+     */
+    @Column(name = "deleted",nullable = true)
+    private boolean deleted;
+
+    /**
      * 密码，如:
      * 支付密码:42234324
      * 登录密码:dsf24234234
@@ -40,40 +59,72 @@ public class Subject implements Serializable{
         return id;
     }
 
-    public void setId(Long id) {
+    public Subject setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public Subject setUserId(long userId) {
         this.userId = userId;
+        return this;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Subject setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public Subject setUrl(String url) {
         this.url = url;
+        return this;
     }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public Subject setCreateTime(Date createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public Subject setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public Subject setDeleted(boolean deleted) {
+        this.deleted = deleted;
+        return this;
+}
 
     public List<Secret> getSecrets() {
         return secrets;
     }
 
-    public void setSecrets(List<Secret> secrets) {
+    public Subject setSecrets(List<Secret> secrets) {
         this.secrets = secrets;
+        return this;
     }
 
     /**
@@ -81,10 +132,11 @@ public class Subject implements Serializable{
      * @param key
      * @throws Exception
      */
-    public void entryptAllSecret(String key) throws Exception {
+    public Subject entryptAllSecret(String key) throws Exception {
         for(Secret secret : getSecrets()){
             secret.entrypt(key);
         }
+        return this;
     }
 
     /**
@@ -92,10 +144,31 @@ public class Subject implements Serializable{
      * @param key
      * @throws Exception
      */
-    public void decryptAllSecret(String key) throws Exception {
+    public Subject decryptAllSecret(String key) throws Exception {
         for(Secret secret : getSecrets()){
             secret.decrypt(key);
         }
+        return this;
+    }
+
+    @Override
+    public int hashCode() {
+        final int PRIME = 31;
+        int result = 1;
+        result = (int) (PRIME * result + getId());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (null == o){
+            return false;
+        }
+        if (!(o instanceof Subject)){
+            return false;
+        }
+
+        return this.getId() == ((Subject)o).getId();
     }
 
     @Override
