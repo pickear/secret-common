@@ -92,6 +92,9 @@ public class Subject implements Serializable{
     }
 
     public Date getCreateTime() {
+        if(null == getId() && null == getCreateTime()){
+            setCreateTime(new Date());
+        }
         return createTime;
     }
 
@@ -101,6 +104,9 @@ public class Subject implements Serializable{
     }
 
     public Date getUpdateTime() {
+        if(null == getUpdateTime()){
+            setUpdateTime(new Date());
+        }
         return updateTime;
     }
 
