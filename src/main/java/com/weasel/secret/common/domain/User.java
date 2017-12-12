@@ -36,13 +36,13 @@ public class User implements Serializable{
      *创建时间
      */
     @Column(name = "create_time",nullable = false)
-    private Date createTime;
+    private Long createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time",nullable = true)
-    private Date updateTime;
+    private Long updateTime;
     /**
      * 密码主体，比如招行，淘宝
      */
@@ -82,25 +82,25 @@ public class User implements Serializable{
         this.email = email;
     }
 
-    public Date getCreateTime() {
+    public Long getCreateTime() {
         if(null == getId() && null == this.createTime){
-            setCreateTime(new Date());
+            setCreateTime(System.currentTimeMillis());
         }
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Long getUpdateTime() {
         if(null == this.updateTime){
-            setUpdateTime(new Date());
+            setUpdateTime(System.currentTimeMillis());
         }
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -115,4 +115,5 @@ public class User implements Serializable{
     public void encodePassword(){
         setPassword(EntryptionHelper.md5Hex(getPassword()));
     }
+
 }

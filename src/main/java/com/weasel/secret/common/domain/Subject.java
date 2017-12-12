@@ -32,13 +32,13 @@ public class Subject implements Serializable{
      *创建时间
      */
     @Column(name = "create_time",nullable = false)
-    private Date createTime;
+    private Long createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time",nullable = true)
-    private Date updateTime;
+    private Long updateTime;
 
     /**
      * 是否已删除
@@ -91,28 +91,26 @@ public class Subject implements Serializable{
         return this;
     }
 
-    public Date getCreateTime() {
+    public Long getCreateTime() {
         if(null == getId() && null == this.createTime){
-            setCreateTime(new Date());
+            setCreateTime(System.currentTimeMillis());
         }
         return createTime;
     }
 
-    public Subject setCreateTime(Date createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
-        return this;
     }
 
-    public Date getUpdateTime() {
+    public Long getUpdateTime() {
         if(null == this.updateTime){
-            setUpdateTime(new Date());
+            setUpdateTime(System.currentTimeMillis());
         }
         return updateTime;
     }
 
-    public Subject setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
-        return this;
     }
 
     public boolean isDeleted() {
