@@ -35,13 +35,13 @@ public class User implements Serializable{
     /**
      *创建时间
      */
-    @Column(name = "createTime",nullable = false)
+    @Column(name = "create_time",nullable = false)
     private Date createTime;
 
     /**
      * 修改时间
      */
-    @Column(name = "updateTime",nullable = true)
+    @Column(name = "update_time",nullable = true)
     private Date updateTime;
     /**
      * 密码主体，比如招行，淘宝
