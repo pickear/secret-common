@@ -36,12 +36,14 @@ public class User implements Serializable{
      *创建时间
      */
     @Column(name = "create_time",nullable = false)
+    @Access(value = AccessType.PROPERTY)
     private Long createTime;
 
     /**
      * 修改时间
      */
     @Column(name = "update_time",nullable = true)
+    @Access(value = AccessType.PROPERTY)
     private Long updateTime;
     /**
      * 密码主体，比如招行，淘宝
