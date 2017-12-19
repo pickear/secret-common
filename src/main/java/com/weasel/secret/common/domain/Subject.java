@@ -126,9 +126,9 @@ public class Subject implements Serializable{
 }
 
     public List<Secret> getSecrets() {
-        /*if(null == this.secrets){
-            return new ArrayList<Secret>();
-        }*/
+        if(null == this.secrets){
+            return new ArrayList<>();
+        }
         return secrets;
     }
 
