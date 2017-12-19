@@ -36,7 +36,7 @@ public class User implements Serializable{
     /**
      *创建时间
      */
-    @Column(name = "create_time",nullable = false)
+    @Column(name = "create_time",nullable = false,updatable = false)
     @Access(value = AccessType.PROPERTY)
     private Long createTime;
 

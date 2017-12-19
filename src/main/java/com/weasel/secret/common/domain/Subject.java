@@ -32,7 +32,7 @@ public class Subject implements Serializable{
     /**
      *创建时间
      */
-    @Column(name = "create_time",nullable = false)
+    @Column(name = "create_time",nullable = false,updatable = false)
     @Access(value = AccessType.PROPERTY)
     private Long createTime;
 
@@ -126,9 +126,9 @@ public class Subject implements Serializable{
 }
 
     public List<Secret> getSecrets() {
-        if(null == this.secrets){
-            return new ArrayList<>();
-        }
+        /*if(null == this.secrets){
+            return new ArrayList<Secret>();
+        }*/
         return secrets;
     }
 
