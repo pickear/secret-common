@@ -4,6 +4,7 @@ import com.weasel.secret.common.helper.EntryptionHelper;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -107,6 +108,9 @@ public class User implements Serializable{
     }
 
     public List<Subject> getSubjects() {
+        if(null == this.subjects){
+            return new ArrayList<>();
+        }
         return subjects;
     }
 

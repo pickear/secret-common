@@ -2,6 +2,7 @@ package com.weasel.secret.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Subject implements Serializable{
     private Long id;
 
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
     /**
      * 标题
      */
@@ -70,7 +71,7 @@ public class Subject implements Serializable{
         return userId;
     }
 
-    public Subject setUserId(long userId) {
+    public Subject setUserId(Long userId) {
         this.userId = userId;
         return this;
     }
@@ -125,6 +126,9 @@ public class Subject implements Serializable{
 }
 
     public List<Secret> getSecrets() {
+        if(null == this.secrets){
+            return new ArrayList<>();
+        }
         return secrets;
     }
 

@@ -22,11 +22,6 @@ public class Secret implements Serializable{
     /**
      *
      */
-    @Column(name = "subject_id")
-    private long subjectId;
-    /**
-     *
-     */
     @Column(name = "name")
     private String name;
     /**
@@ -43,14 +38,6 @@ public class Secret implements Serializable{
         this.id = id;
     }
 
-    public long getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(long subjectId) {
-        this.subjectId = subjectId;
-    }
-
     public String getName() {
         return name;
     }
@@ -65,6 +52,26 @@ public class Secret implements Serializable{
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public int hashCode() {
+        final int PRIME = 31;
+        int result = 1;
+        result = (int) (PRIME * result + getId());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (null == o){
+            return false;
+        }
+        if (!(o instanceof Secret)){
+            return false;
+        }
+
+        return this.getId() == ((Secret)o).getId();
     }
 
     /**
