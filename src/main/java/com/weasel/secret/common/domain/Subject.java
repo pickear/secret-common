@@ -178,7 +178,10 @@ public class Subject implements Serializable{
             return false;
         }
 
-        return this.getId() == ((Subject)o).getId();
+        if(null == this.getId() || null == ((Subject)o).getId()){
+            return this == o;
+        }
+        return this.getId().longValue() == ((Subject)o).getId().longValue();
     }
 
     @Override

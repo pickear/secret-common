@@ -71,7 +71,10 @@ public class Secret implements Serializable{
             return false;
         }
 
-        return this.getId() == ((Secret)o).getId();
+        if(null == this.getId() || null == ((Secret)o).getId()){
+            return this == o;
+        }
+        return this.getId().longValue() == ((Secret)o).getId().longValue();
     }
 
     /**
