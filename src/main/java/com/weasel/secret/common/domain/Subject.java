@@ -23,6 +23,9 @@ public class Subject implements Serializable{
      */
     @Column(name = "title",nullable = false)
     private String title;
+
+    @Column(name = "account",nullable = true)
+    private String account;
     /**
      * 主本地址，如http://www.taobao.com
      */
@@ -83,6 +86,14 @@ public class Subject implements Serializable{
     public Subject setTitle(String title) {
         this.title = title;
         return this;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getUrl() {
