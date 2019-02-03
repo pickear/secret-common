@@ -52,6 +52,9 @@ public class Subject implements Serializable{
     @Column(name = "deleted",nullable = true)
     private boolean deleted;
 
+    @Column(name = "version",nullable = false)
+    private int version;
+
     /**
      * 密码，如:
      * 支付密码:42234324
@@ -134,7 +137,15 @@ public class Subject implements Serializable{
     public Subject setDeleted(boolean deleted) {
         this.deleted = deleted;
         return this;
-}
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
     public List<Secret> getSecrets() {
         if(null == this.secrets){
