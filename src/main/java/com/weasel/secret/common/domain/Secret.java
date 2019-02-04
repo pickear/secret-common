@@ -30,6 +30,9 @@ public class Secret implements Serializable{
     @Column(name = "value")
     private String value;
 
+    @Column(name = "subject_id")
+    private Long subjectId;
+
     public Long getId() {
         return id;
     }
@@ -52,6 +55,14 @@ public class Secret implements Serializable{
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Long subjectId) {
+        this.subjectId = subjectId;
     }
 
     @Override

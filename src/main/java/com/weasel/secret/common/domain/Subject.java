@@ -24,6 +24,9 @@ public class Subject implements Serializable{
     @Column(name = "title",nullable = false)
     private String title;
 
+    /**
+     * 帐号
+     */
     @Column(name = "account",nullable = true)
     private String account;
     /**
@@ -60,7 +63,7 @@ public class Subject implements Serializable{
      * 支付密码:42234324
      * 登录密码:dsf24234234
      */
-    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
     private List<Secret> secrets;
 
